@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin Group</title>
+    <link rel="stylesheet" href="info.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Thông tin Group</h1>
+        <nav>
+            <button class="tab-button active" data-tab="background-plot">Background Plot</button>
+            <button class="tab-button" data-tab="characters">Nhân vật</button>
+            <button class="tab-button" data-tab="timeline">Dòng thời gian</button>
+            <button class="tab-button" data-tab="technology">Công nghệ</button>
+        </nav>
+        <div id="content">
+            <div id="background-plot" class="tab-content active">
+                <!-- Nội dung Background Plot sẽ được load ở đây -->
+            </div>
+            <div id="characters" class="tab-content">
+                <!-- Nội dung Nhân vật sẽ được load ở đây -->
+            </div>
+            <div id="timeline" class="tab-content">
+                <!-- Nội dung Dòng thời gian sẽ được load ở đây -->
+            </div>
+            <div id="technology" class="tab-content">
+                <!-- Nội dung Công nghệ sẽ được load ở đây -->
+            </div>
+        </div>
+    </div>
+    <script src="info.js"></script>
+</body>
+</html>
