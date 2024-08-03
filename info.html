@@ -3,33 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin Group</title>
+    <title>Thông tin Plot và World Building</title>
     <link rel="stylesheet" href="info.css">
 </head>
 <body>
     <div class="container">
-        <h1>Thông tin Group</h1>
-        <nav>
-            <button class="tab-button active" data-tab="background-plot">Background Plot</button>
-            <button class="tab-button" data-tab="characters">Nhân vật</button>
-            <button class="tab-button" data-tab="timeline">Dòng thời gian</button>
-            <button class="tab-button" data-tab="technology">Công nghệ</button>
-        </nav>
-        <div id="content">
-            <div id="background-plot" class="tab-content active">
-                <!-- Nội dung Background Plot sẽ được load ở đây -->
-            </div>
-            <div id="characters" class="tab-content">
-                <!-- Nội dung Nhân vật sẽ được load ở đây -->
-            </div>
-            <div id="timeline" class="tab-content">
-                <!-- Nội dung Dòng thời gian sẽ được load ở đây -->
-            </div>
-            <div id="technology" class="tab-content">
-                <!-- Nội dung Công nghệ sẽ được load ở đây -->
-            </div>
-        </div>
+        <h1>Thông tin Plot và World Building</h1>
+<div class="dropdown">
+    <button class="dropbtn">Chọn thông tin bạn muốn xem</button>
+    <div class="dropdown-content">
+        <a href="#" data-content="background-plot">Background Plot</a>
+        <a href="#" data-content="organizations">Các tổ chức chính</a>
+        <a href="#" data-content="characters">Các nhân vật quan trọng</a>
     </div>
+</div>
+        <div id="content">
+            <!-- Nội dung sẽ được hiển thị ở đây -->
+        </div>
+        <button id="back-button" class="back-button">Quay lại</button>
+    </div>
+
+    <!-- Templates for content -->
+    <template id="background-plot-template">
+        <!-- Nội dung Background Plot -->
+    </template>
+
+    <template id="organizations-template">
+        <!-- Nội dung Các tổ chức chính -->
+    </template>
+
+    <template id="characters-template">
+        <!-- Nội dung Các nhân vật quan trọng -->
+    </template>
+
     <script src="info.js"></script>
 </body>
 </html>

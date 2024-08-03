@@ -1,39 +1,53 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
+    const dropbtn = document.querySelector('.dropbtn');
+    const dropdownContent = document.querySelector('.dropdown-content');
+    const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+    const contentDiv = document.getElementById('content');
+    const backButton = document.getElementById('back-button');
 
-    function loadContent(tabId) {
-        const contentElement = document.getElementById(tabId);
-        fetch(`${tabId}.html`)
-            .then(response => response.text())
-            .then(data => {
-                // Tìm nội dung trong thẻ có class 'plot-content'
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(data, 'text/html');
-                const plotContent = doc.querySelector('.plot-content');
-                if (plotContent) {
-                    contentElement.innerHTML = plotContent.innerHTML;
-                } else {
-                    contentElement.innerHTML = data;
+    dropbtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdownContent.classList.toggle('show');
+    });
+
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const contentType = this.getAttribute('data-content');
+            const template = document.getElementById(`${contentType}-template`);
+            
+            if (template) {
+                contentDiv.innerHTML = template.innerHTML;
+                contentDiv.style.display = 'block';
+                backButton.style.display = 'block';
+                dropbtn.textContent = this.textContent;
+                dropdownContent.classList.remove('show');
+
+                if (contentType === 'background-plot') {
+                    setupBackgroundPlot();
                 }
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tabId = this.getAttribute('data-tab');
-            
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            this.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-            
-            loadContent(tabId);
+            } else {
+                contentDiv.innerHTML = '<p>Nội dung đang được cập nhật.</p>';
+            }
         });
     });
 
-    // Load background plot by default
-    loadContent('background-plot');
+    backButton.addEventListener('click', function() {
+        contentDiv.innerHTML = '';
+        contentDiv.style.display = 'none';
+        this.style.display = 'none';
+        dropbtn.textContent = 'Chọn thông tin bạn muốn xem';
+    });
+
+    function setupBackgroundPlot() {
+        // Mã xử lý cho Background Plot (nếu cần)
+    }
+
+    // Đóng dropdown khi click bên ngoài
+    document.addEventListener('click', function(event) {
+        if (!dropbtn.contains(event.target) && !dropdownContent.contains(event.target)) {
+            dropdownContent.classList.remove('show');
+        }
+    });
 });
